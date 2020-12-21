@@ -22,9 +22,7 @@ RSpec.describe 'ツイート投稿', type: :system do
       fill_in 'tweet_image', with: @tweet_image
       fill_in 'tweet_text', with: @tweet_text
       # 送信するとTweetモデルのカウントが1上がることを確認する
-      expect{
-      find('input[name="commit"]').click
-      }.to change { Tweet.count }.by(1)
+      expect{find('input[name="commit"]').click}.to change { Tweet.count }.by(1)
       # 投稿完了ページに遷移することを確認する
       expect(current_path).to eq tweets_path
       # 「投稿が完了しました」の文字があることを確認する
