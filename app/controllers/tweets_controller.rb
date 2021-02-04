@@ -4,6 +4,8 @@ class TweetsController < ApplicationController
 
   def index
     @tweets = Tweet.includes(:user).order("created_at DESC")
+    # query = "SELECT * FROM tweets"
+    # @tweets = Tweet.find_by_sql(query).order("created_at DESC")
   end
 
   def new
@@ -33,7 +35,7 @@ class TweetsController < ApplicationController
   end
 
   def search
-    @tweets = Tweet.search(params[:keyword])
+    @tweets = SearchTweetsService.search(params[:keyword])
   end
 
   private
